@@ -1,3 +1,6 @@
+# ML models
+**.h5
+
 # Logs
 logs
 *.log
@@ -22,3 +25,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Python virtual environment
+env
+
+# Personal task tracking
+task-tracking.md

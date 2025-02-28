@@ -1,0 +1,18 @@
+{
+  "dry-asphalt-bad": 0,
+  "dry-asphalt-good": 1,
+  "dry-asphalt-intermediate": 2,
+  "dry-paved-bad": 3,
+  "dry-paved-good": 4,
+  "dry-paved-intermediate": 5,
+  "unpaved": 6,
+  "water-asphalt": 7,
+  "water-paved": 8,
+  "water-unpaved": 9,
+  "wet-asphalt-bad": 10,
+  "wet-asphalt-good": 11,
+  "wet-asphalt-intermediate": 12,
+  "wet-paved-bad": 13,
+  "wet-paved-good": 14,
+  "wet-paved-intermediate": 15
+}
