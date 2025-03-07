@@ -3,24 +3,14 @@ from tensorflow import keras
 from PIL import Image
 import numpy as np
 import os
-
-if len(tf.config.list_physical_devices('GPU')) > 0:
-    print("GPU is Available!" )
-else:
-    raise Exception("No GPU available")
+from model_loader import ModelLoader
 
 # Get the directory of the script
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Get the absolute path of the model at "model/road_surface_classifier_152V2_92.h5"
-model_path = os.path.join(script_dir, 'model', 'road_surface_classifier_152V2_92.h5')
-
-try:
-    loaded_model = keras.models.load_model(model_path)
-
-    print('Model loaded successfully!')
-except Exception as e:
-    print(f'Model failed to load\n{e}')
+# Initialize model loader and load model
+model_loader = ModelLoader()
+loaded_model = model_loader.load_model()
 
 def classify_image(image_path):
     # Generate single prediction based on image

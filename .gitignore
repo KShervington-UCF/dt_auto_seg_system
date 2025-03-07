@@ -31,3 +31,6 @@ env
 
 # Personal task tracking
 task-tracking.md
+
+# Python cache
+__pycache__
