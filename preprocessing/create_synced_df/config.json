@@ -1,0 +1,15 @@
+{
+  "column_names": [
+    "GPS time",
+    "date",
+    "time",
+    "latitude",
+    "longitude",
+    "altitude",
+    "qx",
+    "qy",
+    "qz",
+    "qw",
+    "image"
+  ]
+}

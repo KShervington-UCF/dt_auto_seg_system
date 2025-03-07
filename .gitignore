@@ -34,3 +34,6 @@ task-tracking.md
 
 # Python cache
 __pycache__
+
+# Sample raw data
+sample_raw_data/**
