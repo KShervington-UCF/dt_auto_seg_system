@@ -36,4 +36,4 @@ task-tracking.md
 __pycache__
 
 # Sample raw data
-sample_raw_data/**
+**/sample_raw_data/**

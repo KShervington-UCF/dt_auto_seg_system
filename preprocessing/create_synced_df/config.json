@@ -1,6 +1,6 @@
 {
   "column_names": [
-    "GPS time",
+    "gps_time",
     "date",
     "time",
     "latitude",
@@ -11,5 +11,10 @@
     "qz",
     "qw",
     "image"
-  ]
+  ],
+  "syncronized_df_parentDir": "./output/",
+  "location_file_path": "./sample_raw_data/Location.csv",
+  "orientation_file_path": "./sample_raw_data/orientation.csv",
+  "image_folder_path": "./sample_raw_data/Camera/",
+  "orientation_encoding": "quaternion"
 }
