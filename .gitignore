@@ -37,3 +37,6 @@ __pycache__
 
 # Sample raw data
 **/sample_raw_data/**
+
+# Windsurf workspace
+dt_auto_seg_system.code-workspace
