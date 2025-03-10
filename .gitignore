@@ -35,11 +35,15 @@ task-tracking.md
 # Python cache
 __pycache__
 
+# Output files
+**/output/**
+
+# TEMPORARY FILES FOR TESTING
 # Sample raw data
 **/sample_raw_data/**
 
 # Windsurf workspace
 dt_auto_seg_system.code-workspace
 
-# Output files
-**/output/**
+# Synced_df file copied from preprocessing output
+modules/geopose/synchronized_df.csv
