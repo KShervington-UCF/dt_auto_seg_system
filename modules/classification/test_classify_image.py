@@ -47,6 +47,7 @@ if __name__ == '__main__':
         "wet-paved-good",
         "wet-paved-intermediate"]
 
+    # Some images pulled from the training dataset
     test_images_dir = os.path.join(script_dir, 'test_images')
     
     # Process all images in the test_images directory

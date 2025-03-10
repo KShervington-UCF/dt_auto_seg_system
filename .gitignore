@@ -47,3 +47,6 @@ dt_auto_seg_system.code-workspace
 
 # Synced_df file copied from preprocessing output
 modules/geopose/synchronized_df.csv
+
+# Some images pulled from the training dataset
+modules/classification/test_images
