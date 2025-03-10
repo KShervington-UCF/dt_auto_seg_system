@@ -77,9 +77,7 @@ geopose_series = {
 }
 
 output_dir = os.path.join(os.path.dirname(__file__), 'output')
-
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
+os.makedirs(output_dir, exist_ok=True)
 
 geopose_path = os.path.join(output_dir, 'geopose_file.json')
 with open(geopose_path, 'w') as json_file:
