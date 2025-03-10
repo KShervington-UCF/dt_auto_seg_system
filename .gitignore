@@ -40,3 +40,6 @@ __pycache__
 
 # Windsurf workspace
 dt_auto_seg_system.code-workspace
+
+# Output files
+**/output/**

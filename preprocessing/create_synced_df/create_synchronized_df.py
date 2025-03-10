@@ -19,7 +19,7 @@ location_file = os.path.join(curr_directory, config['location_file_path'])
 orientation_file = os.path.join(curr_directory, config['orientation_file_path'])
 image_folder = os.path.join(curr_directory, config['image_folder_path'])
 
-# 3. 
+# 3. Perform conversions and merges
 
 # Load csv data into dataframes
 location_df = pd.read_csv(location_file)
@@ -85,16 +85,9 @@ cols.insert(0, cols.pop(cols.index('gps_time')))
 # Reorder the DataFrame using the updated column order
 loc_ori_merged_df = loc_ori_merged_df[cols]
 
-# Convert epoch time to gps time in both dataframes
-# location_df['gps_time'] = location_df.apply(utc_to_gps_time)
-# orientation_df['gps_time'] = orientation_df.apply(utc_to_gps_time)
-
-# # Merge location and orientation dataframes
-# loc_ori_merged_df = pd.merge(location_df, orientation_df, on='gps_time', how='inner')
-
+# Get list of image names
 image_names = os.listdir(image_folder)
 
-# Add column to loc_ori_merged_df which contains the image name
 # Create a dictionary to map GPS times to image names
 image_gps_times = {}
 for image_name in image_names:
@@ -134,7 +127,7 @@ def find_closest_image(row_gps_time, image_gps_times_dict):
         return None
 
 # 4. Create synchronized dataframe
-# Add the image column to the dataframe
+# Add the image column to the location-orientation dataframe
 loc_ori_merged_df['image'] = loc_ori_merged_df['gps_time'].apply(
     lambda x: find_closest_image(x, image_gps_times)
 )
