@@ -1,5 +1,6 @@
 # ML models
 **.h5
+**.pt
 
 # Logs
 logs
@@ -26,8 +27,9 @@ dist-ssr
 *.sln
 *.sw?
 
-# Python virtual environment
+# Python virtual environments
 env
+sam2-env
 
 # Personal task tracking
 task-tracking.md

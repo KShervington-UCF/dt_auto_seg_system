@@ -1,5 +1,7 @@
 python version 3.9.18
 
+Sam2 environment requires python version >=3.10
+
 [Project Setup](./docs/PROJECT_SETUP.md)
 
 Process Flow for manual testing:
