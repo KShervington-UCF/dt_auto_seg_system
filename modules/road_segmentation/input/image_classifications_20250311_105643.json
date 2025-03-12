@@ -1,0 +1,32 @@
+[
+  {
+    "image": "1738856794439.jpg",
+    "predicted_class": "dry-paved-bad",
+    "confidence_score": 0.1534
+  },
+  {
+    "image": "1738856795431.jpg",
+    "predicted_class": "dry-paved-bad",
+    "confidence_score": 0.1534
+  },
+  {
+    "image": "1738856796442.jpg",
+    "predicted_class": "dry-paved-bad",
+    "confidence_score": 0.1534
+  },
+  {
+    "image": "1738856797460.jpg",
+    "predicted_class": "dry-paved-bad",
+    "confidence_score": 0.1534
+  },
+  {
+    "image": "1738856798466.jpg",
+    "predicted_class": "dry-paved-bad",
+    "confidence_score": 0.1534
+  },
+  {
+    "image": "1738856799502.jpg",
+    "predicted_class": "dry-paved-bad",
+    "confidence_score": 0.1534
+  }
+]

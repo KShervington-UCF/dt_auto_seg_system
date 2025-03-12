@@ -55,35 +55,73 @@ def calculate_input_points(image):
 
     return [[road_point_x, road_point_y], [negative_point_x, negative_point_y]]
 
+def process_images(classifications_file, masking_model):
+    """
+    Process multiple images based on classifications file
+    
+    Args:
+        classifications_file: Path to JSON file containing image classifications
+        masking_model: Initialized SAM2Model instance
+    """
+    # Read classifications file
+    with open(classifications_file, 'r') as f:
+        classifications = json.load(f)
+
+    # Get directory paths
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    images_dir = os.path.join(script_dir, 'input', 'test_images')
+    
+    results = []
+    
+    for item in classifications:
+        image_path = os.path.join(images_dir, item['image'])
+        if not os.path.exists(image_path):
+            print(f"Warning: Image {item['image']} not found, skipping...")
+            continue
+
+        # Process image
+        image = cv2.imread(image_path)
+        input_points = calculate_input_points(image)
+        mask, confidence_score = masking_model.segment_road(
+            image_path, 
+            input_points=input_points, 
+            input_labels=([1, 0])
+        )
+        
+        segmentation_poly = convert_mask_to_polygon(mask)
+        
+        # Create result object
+        result = {
+            'image': item['image'],
+            'class': item['predicted_class'],
+            'confidence_score': float(confidence_score),
+            'segmentation': segmentation_poly
+        }
+        results.append(result)
+        print(f"Processed {item['image']}")
+    
+    return results
+
 if __name__ == '__main__':
     # Load SAM2 model
     masking_model = SAM2Model()
 
-    # Get path to image
+    # Get paths
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    image_path = os.path.join(script_dir, 'test_images', '1738856805878.jpg')
+    classifications_path = os.path.join(script_dir, 'input', 'image_classifications_20250311_105643.json')
+    
+    # Process all images
+    results = process_images(classifications_path, masking_model)
 
-    image = cv2.imread(image_path)
-
-    input_points = (calculate_input_points(image))
-
-    mask, confidence_core = masking_model.segment_road(image_path, input_points=input_points, input_labels=([1, 0]))
-
-    segmentation_poly = convert_mask_to_polygon(mask)
-
+    # Save results
     output_dir = os.path.join(script_dir, 'output')
     os.makedirs(output_dir, exist_ok=True)
+    
+    timestamp = os.path.basename(classifications_path).split('_')[2].split('.')[0]
+    output_file = f'segmentations_{timestamp}.json'
+    output_path = os.path.join(output_dir, output_file)
+    
+    with open(output_path, 'w') as f:
+        json.dump(results, f, indent=2)
 
-    json_data = {
-        'image': os.path.basename(image_path),
-        'class': 'TBD',
-        'confidence_score': float(confidence_core),
-        'segmentation': segmentation_poly
-    }
-
-    # Create json file to dump polygon data
-    json_path = os.path.join(output_dir, 'polygon.json')
-    with open(json_path, 'w') as f:
-        json.dump(json_data, f)
-
-    print(f"Output saved to {json_path}")
+    print(f"All segmentations saved to {output_path}")
