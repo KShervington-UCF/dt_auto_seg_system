@@ -1,6 +1,33 @@
 import os
 import cv2
+import json
+import numpy as np
 from sam2_model import SAM2Model
+
+def convert_mask_to_polygon(binary_mask):
+    # Ensure the mask is uint8
+    binary_mask = binary_mask.astype(np.uint8)
+
+    # Find external contours of the binary mask
+    contours, _ = cv2.findContours(binary_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    # Try to smooth contours
+    contours = [cv2.approxPolyDP(contour, epsilon=0.01, closed=True) for contour in contours]
+
+    polygons = []
+    for cnt in contours:
+        # Flatten the contour array and convert to list
+        cnt = cnt.squeeze()
+        if cnt.ndim < 2:
+            continue  # Skip if not enough points
+        # Convert to list of (x,y) coordinates
+        polygon = cnt.flatten().tolist()
+        polygons.append(polygon)
+
+    # Get the polygon with the most points
+    polygons.sort(key=lambda x: len(x), reverse=True)
+
+    return polygons[0]
 
 def calculate_input_points(image):
     """
@@ -42,5 +69,21 @@ if __name__ == '__main__':
 
     mask, confidence_core = masking_model.segment_road(image_path, input_points=input_points, input_labels=([1, 0]))
 
-    print(f"Confidence score: {confidence_core}")
-    print(f"Generated mask: {mask}")
+    segmentation_poly = convert_mask_to_polygon(mask)
+
+    output_dir = os.path.join(script_dir, 'output')
+    os.makedirs(output_dir, exist_ok=True)
+
+    json_data = {
+        'image': os.path.basename(image_path),
+        'class': 'TBD',
+        'confidence_score': float(confidence_core),
+        'segmentation': segmentation_poly
+    }
+
+    # Create json file to dump polygon data
+    json_path = os.path.join(output_dir, 'polygon.json')
+    with open(json_path, 'w') as f:
+        json.dump(json_data, f)
+
+    print(f"Output saved to {json_path}")
