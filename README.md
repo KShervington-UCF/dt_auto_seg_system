@@ -14,3 +14,5 @@ Process Flow for manual testing:
 5. Execute `preprocessing\crop_images\crop_images.py` script to crop images from `preprocessing\create_synced_df\sample_raw_data\Camera`
 6. All or a subset of images can be copied from `preprocessing\crop_images\output` to `modules\classification\test_images`
 7. Execute `modules\classification\classify_images.py` to create a classification report
+
+> Road segmentation instruction to be added. Essentially you take output of classification module and raw images as input. Parse classification output to segment corresponding images in raw set of images.
