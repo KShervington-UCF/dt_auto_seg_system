@@ -1,5 +1,3 @@
-# This script assumes "test_images" are coming from the original dataset in order to compare the model's predictions with the ground truth labels.
-
 import tensorflow as tf
 from tensorflow import keras
 from PIL import Image

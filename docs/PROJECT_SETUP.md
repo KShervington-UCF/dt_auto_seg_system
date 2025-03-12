@@ -28,3 +28,10 @@ Project originally run and executed on Windows 10 ver. 10.0.19045 Build 19045 by
    else:
        raise Exception("No GPU available")
    ```
+
+# SAM2 Setup
+
+Similar to above except for the following differences:
+
+- Python version in step **3.** should `be 3.10`
+- Dependencies to install in step 7 should be from the `sam2-requirements.txt` file
