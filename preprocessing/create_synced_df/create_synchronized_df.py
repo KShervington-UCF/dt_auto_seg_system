@@ -140,8 +140,13 @@ fully_merged_df = fully_merged_df[config['column_names']]
 # Remove duplicates to ensure images only appear once
 fully_merged_df = fully_merged_df.drop_duplicates(subset=['image'])
 
+# Create synchronized output directory if it doesn't exist
+synced_df_output_dir = os.path.join(curr_directory, config['synchronized_df_parentDir'])
+
+os.makedirs(synced_df_output_dir, exist_ok=True)
+
 # 5. Save synchronized dataframe to CSV
-synced_df_output_path = os.path.join(curr_directory, config['syncronized_df_parentDir'], 'synchronized_df.csv')
+synced_df_output_path = os.path.join(synced_df_output_dir, 'synchronized_df.csv')
 fully_merged_df.to_csv(synced_df_output_path, index=False)
 
 print(f"Synchronized dataframe saved to {synced_df_output_path}")
