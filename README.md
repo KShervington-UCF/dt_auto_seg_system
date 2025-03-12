@@ -13,4 +13,4 @@ Process Flow for manual testing:
 4. Execute `modules\geopose\create_geopose.py` to create a geopose file
 5. Execute `preprocessing\crop_images\crop_images.py` script to crop images from `preprocessing\create_synced_df\sample_raw_data\Camera`
 6. All or a subset of images can be copied from `preprocessing\crop_images\output` to `modules\classification\test_images`
-7. Execute `modules\classification\test_classify_image.py` to create a classification report
+7. Execute `modules\classification\classify_images.py` to create a classification report
