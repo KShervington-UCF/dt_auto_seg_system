@@ -30,6 +30,7 @@ dist-ssr
 # Python virtual environments
 env
 sam2-env
+detectron2-env
 
 # Personal task tracking
 task-tracking.md

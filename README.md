@@ -16,3 +16,6 @@ Process Flow for manual testing:
 7. Execute `modules\classification\classify_images.py` to create a classification report
 
 > Road segmentation instruction to be added. Essentially you take output of classification module and raw images as input. Parse classification output to segment corresponding images in raw set of images.
+
+For object segmentation, a new environment had to be created because the `iopath` version required for detectron2 conflicted with SAM2.
+After performing the standard project setup, I followed the instructions [here](https://detectron2.readthedocs.io/en/latest/tutorials/install.html) to **Build Detectron2 from Source**. Specific package versions can be found in the corresponding `requirements.txt` file.
