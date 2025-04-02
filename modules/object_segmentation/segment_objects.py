@@ -16,7 +16,7 @@ cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/mask
 predictor = DefaultPredictor(cfg)
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-img_path = os.path.join(script_dir, "2115979251_8281e3fe36_b.jpg")
+img_path = os.path.join(script_dir, "2115979251_8281e3fe36_b.jpg") # Replace with your image path
 
 # Load image
 im = cv2.imread(img_path)
@@ -32,5 +32,11 @@ classes = outputs["instances"].pred_classes.cpu().numpy()
 v = Visualizer(im[:, :, ::-1], MetadataCatalog.get(cfg.DATASETS.TRAIN[0]), scale=1.2)
 out = v.draw_instance_predictions(outputs["instances"].to("cpu"))
 cv2.imshow("Segmentation", out.get_image()[:, :, ::-1])
+
+# Save segmented image
+segmented_img_path = os.path.join(script_dir, "segmented_image.jpg")
+cv2.imwrite(segmented_img_path, out.get_image()[:, :, ::-1])
+
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
