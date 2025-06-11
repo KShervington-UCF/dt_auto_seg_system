@@ -17,7 +17,8 @@ Process Flow for manual testing:
 8. Copy the `modules\classification\output\image_classifications_20250611_152552.json` file to `modules\road_segmentation\input`
 9. Copy the corresponding images mentioned in `modules\classification\output\image_classifications_20250611_152552.json` from `preprocessing\create_synced_df\sample_raw_data\Camera` to `modules\road_segmentation\input\test_images`
 10. Execute `modules\road_segmentation\segment_images.py` to create a road segmentation report
-11. Copy the `modules\road_segmentation\input` folder to `modules\object_segmentation`
+11. Copy the corresponding images mentioned in `modules\classification\output\image_classifications_20250611_152552.json` from `preprocessing\create_synced_df\sample_raw_data\Camera` to `modules\object_segmentation\input\test_images`
+12. Execute `modules\object_segmentation\segment_objects.py` to create an object segmentation report
 
 > Road segmentation instruction to be added. Essentially you take output of classification module and raw images as input. Parse classification output to segment corresponding images in raw set of images.
 

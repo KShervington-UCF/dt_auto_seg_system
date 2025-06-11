@@ -8,35 +8,131 @@ from detectron2.utils.visualizer import Visualizer
 from detectron2.data import MetadataCatalog
 import cv2
 import os
+import json
+import numpy as np
+from pathlib import Path
 
-# Load configuration
-cfg = get_cfg()
-cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"))
-cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml")
-predictor = DefaultPredictor(cfg)
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
-img_path = os.path.join(script_dir, "2115979251_8281e3fe36_b.jpg") # Replace with your image path
+def setup_detector():
+    """Set up the Detectron2 model and return a predictor."""
+    cfg = get_cfg()
+    cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"))
+    cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml")
+    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5  # Set the confidence threshold
+    predictor = DefaultPredictor(cfg)
+    return predictor, cfg
 
-# Load image
-im = cv2.imread(img_path)
 
-# Run prediction
-outputs = predictor(im)
+def segment_image(image_path, predictor, cfg):
+    """Segment objects in an image and return the output data."""
+    # Load image
+    image = cv2.imread(image_path)
+    if image is None:
+        print(f"Error loading image: {image_path}")
+        return None
+    
+    # Run prediction
+    outputs = predictor(image)
+    
+    return image, outputs
 
-# Access segmentation masks
-masks = outputs["instances"].pred_masks.cpu().numpy()
-classes = outputs["instances"].pred_classes.cpu().numpy()
 
-# Process and visualize masks (example)
-v = Visualizer(im[:, :, ::-1], MetadataCatalog.get(cfg.DATASETS.TRAIN[0]), scale=1.2)
-out = v.draw_instance_predictions(outputs["instances"].to("cpu"))
-cv2.imshow("Segmentation", out.get_image()[:, :, ::-1])
+def process_segmentation_output(outputs, metadata):
+    """Process detectron2 segmentation output into a structured format."""
+    instances = outputs["instances"].to("cpu")
+    
+    # Extract needed data
+    masks = instances.pred_masks.numpy()
+    classes = instances.pred_classes.numpy()
+    scores = instances.scores.numpy()
+    
+    # Get class names
+    class_names = [metadata.thing_classes[class_id] for class_id in classes]
+    
+    # Process each detected object
+    objects = []
+    for i in range(len(masks)):
+        # Convert binary mask to polygon representation for more compact storage
+        mask = masks[i].astype(np.uint8)
+        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        contours = [contour.reshape(-1, 2).tolist() for contour in contours]
+        
+        object_data = {
+            "class": class_names[i],
+            "confidence": float(scores[i]),  # Convert numpy float to Python float for JSON serialization
+            "segmentation": contours
+        }
+        objects.append(object_data)
+    
+    return objects
 
-# Save segmented image
-segmented_img_path = os.path.join(script_dir, "segmented_image.jpg")
-cv2.imwrite(segmented_img_path, out.get_image()[:, :, ::-1])
 
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+def visualize_segmentation(image, outputs, metadata):
+    """Create a visualization of the segmentation results."""
+    v = Visualizer(image[:, :, ::-1], metadata, scale=1.2)
+    out = v.draw_instance_predictions(outputs["instances"].to("cpu"))
+    return out.get_image()[:, :, ::-1]  # Convert back to BGR for OpenCV
+
+
+def segment_objects(visualize=False):
+    """Process all images in the input directory and save segmentation results."""
+    # Set up paths
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    input_dir = os.path.join(script_dir, "input", "test_images")
+    output_dir = os.path.join(script_dir, "output")
+    vis_dir = os.path.join(output_dir, "segmented_images")
+    
+    # Create output directories if they don't exist
+    os.makedirs(output_dir, exist_ok=True)
+    if visualize:
+        os.makedirs(vis_dir, exist_ok=True)
+    
+    # Set up the segmentation model
+    predictor, cfg = setup_detector()
+    metadata = MetadataCatalog.get(cfg.DATASETS.TRAIN[0])
+    
+    # Initialize results structure
+    all_results = {}
+    
+    # Process all images in the input directory
+    image_files = [f for f in os.listdir(input_dir) 
+                  if f.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.tiff'))]
+    
+    for image_file in image_files:
+        image_path = os.path.join(input_dir, image_file)
+        print(f"Processing {image_file}...")
+        
+        # Segment the image
+        result = segment_image(image_path, predictor, cfg)
+        if result is None:
+            continue
+            
+        image, outputs = result
+        
+        # Process segmentation outputs
+        objects = process_segmentation_output(outputs, metadata)
+        
+        # Save to results collection
+        all_results[image_file] = {
+            "image": image_file,
+            "objects": objects
+        }
+        
+        # Generate and save visualization if requested
+        if visualize:
+            vis_image = visualize_segmentation(image, outputs, metadata)
+            vis_path = os.path.join(vis_dir, f"segmented_{image_file}")
+            cv2.imwrite(vis_path, vis_image)
+    
+    # Save all results to a JSON file
+    results_path = os.path.join(output_dir, "segmentation_results.json")
+    with open(results_path, 'w') as f:
+        json.dump(all_results, f, indent=2)
+    
+    print(f"Segmentation complete. Results saved to {results_path}")
+    return all_results
+
+
+if __name__ == "__main__":
+    segment_objects(visualize=False)
 
