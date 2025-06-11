@@ -108,7 +108,7 @@ if __name__ == '__main__':
 
     # Get paths
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    classifications_path = os.path.join(script_dir, 'input', 'image_classifications_20250311_105643.json')
+    classifications_path = os.path.join(script_dir, 'input', 'image_classifications_20250611_152552.json')
     
     # Process all images
     results = process_images(classifications_path, masking_model)

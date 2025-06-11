@@ -1,0 +1,62 @@
+[
+  {
+    "image": "1726234834775.jpg",
+    "predicted_class": "water-asphalt",
+    "confidence_score": 0.1534
+  },
+  {
+    "image": "1726234835738.jpg",
+    "predicted_class": "water-asphalt",
+    "confidence_score": 0.1534
+  },
+  {
+    "image": "1726234836750.jpg",
+    "predicted_class": "water-asphalt",
+    "confidence_score": 0.1534
+  },
+  {
+    "image": "1726234837766.jpg",
+    "predicted_class": "water-asphalt",
+    "confidence_score": 0.1534
+  },
+  {
+    "image": "1726234838753.jpg",
+    "predicted_class": "water-asphalt",
+    "confidence_score": 0.1534
+  },
+  {
+    "image": "1726234839751.jpg",
+    "predicted_class": "water-asphalt",
+    "confidence_score": 0.1534
+  },
+  {
+    "image": "1726234840760.jpg",
+    "predicted_class": "water-asphalt",
+    "confidence_score": 0.1534
+  },
+  {
+    "image": "1726234841779.jpg",
+    "predicted_class": "water-asphalt",
+    "confidence_score": 0.1534
+  },
+  {
+    "image": "1726234842790.jpg",
+    "predicted_class": "water-asphalt",
+    "confidence_score": 0.1534
+  },
+  {
+    "image": "1726234843797.jpg",
+    "predicted_class": "water-asphalt",
+    "confidence_score": 0.1534
+  },
+  {
+    "image": "1726234844784.jpg",
+    "predicted_class": "water-asphalt",
+    "confidence_score": 0.1534
+  },
+  {
+    "image": "1726234845816.jpg",
+    "predicted_class": "water-asphalt",
+    "confidence_score": 0.1534
+  }
+]

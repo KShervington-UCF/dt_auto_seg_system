@@ -15,7 +15,7 @@ class ModelLoader:
         return False
         
     # Model currently not shared but can be accessed personally at https://ucf-my.sharepoint.com/:u:/r/personal/ky455244_ucf_edu/Documents/auto-seg-system-files/road_surface_classifier_152V2_92.h5?csf=1&web=1&e=LmufH3
-    def load_model(self, model_name='road_surface_classifier_152V2_92.h5'):
+    def load_model(self, model_name='road_surface_classifier_152V2_92_weighted.h5'):
         # Get the absolute path of the model
         model_path = os.path.join(self.script_dir, 'model', model_name)
         
