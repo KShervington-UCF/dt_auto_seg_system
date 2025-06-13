@@ -3,9 +3,19 @@ import numpy as np
 import os
 import hashlib
 import json
+import sys
+from pathlib import Path
+
+# Add the project root to the Python path to import the config utils
+project_root = Path(__file__).resolve().parents[2]
+sys.path.append(str(project_root))
+
+# Import the config utility
+from modules.utils.config_utils import config
 
 # Load synchronized dataframe file created from preprocessing
-synced_df = pd.read_csv(os.path.join(os.path.dirname(__file__), 'synchronized_df.csv'))
+synced_df_path = config.get_path('preprocessing', 'synced_df_path')
+synced_df = pd.read_csv(synced_df_path)
 
 # Define the reference point (first entry in the dataset)
 lat_ref = synced_df.iloc[0]['latitude']
@@ -76,10 +86,13 @@ geopose_series = {
     "trailer": series_trailer
 }
 
-output_dir = os.path.join(os.path.dirname(__file__), 'output')
+# Create output directory if it doesn't exist
+output_dir = config.get_path('geopose', 'output_dir')
 os.makedirs(output_dir, exist_ok=True)
 
-geopose_path = os.path.join(output_dir, 'geopose_file.json')
+# Save geopose file to configured path
+geopose_path = config.get_path('geopose', 'geopose_file_path')
+os.makedirs(os.path.dirname(geopose_path), exist_ok=True)
 with open(geopose_path, 'w') as json_file:
     json.dump(geopose_series, json_file, indent=4)
 

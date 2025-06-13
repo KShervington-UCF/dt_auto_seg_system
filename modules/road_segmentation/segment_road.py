@@ -2,7 +2,17 @@ import os
 import cv2
 import json
 import numpy as np
+import sys
+from pathlib import Path
 from sam2_model import SAM2Model
+from datetime import datetime
+
+# Add the project root to the Python path to import the config utils
+project_root = Path(__file__).resolve().parents[2]
+sys.path.append(str(project_root))
+
+# Import the config utility
+from modules.utils.config_utils import config
 
 def convert_mask_to_polygon(binary_mask):
     # Ensure the mask is uint8
@@ -67,9 +77,8 @@ def process_images(classifications_file, masking_model):
     with open(classifications_file, 'r') as f:
         classifications = json.load(f)
 
-    # Get directory paths
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    images_dir = os.path.join(script_dir, 'input', 'test_images')
+    # Get directory paths from config
+    images_dir = config.get_path('road_segmentation', 'images_dir')
     
     results = []
     
@@ -99,29 +108,37 @@ def process_images(classifications_file, masking_model):
         }
         results.append(result)
         print(f"Processed {item['image']}")
-    
+
     return results
 
 if __name__ == '__main__':
     # Load SAM2 model
     masking_model = SAM2Model()
 
-    # Get paths
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    classifications_path = os.path.join(script_dir, 'input', 'image_classifications_20250611_152552.json')
+    # Get paths from config
+    classifications_path = config.get_path('classification', 'classification_file_path')
     
     # Process all images
     results = process_images(classifications_path, masking_model)
 
     # Save results
-    output_dir = os.path.join(script_dir, 'output')
+    output_dir = config.get_path('road_segmentation', 'output_dir')
     os.makedirs(output_dir, exist_ok=True)
     
-    timestamp = os.path.basename(classifications_path).split('_')[2].split('.')[0]
+    # Save to timestamp-based file
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_file = f'segmentations_{timestamp}.json'
     output_path = os.path.join(output_dir, output_file)
     
+    # Also save to standard path defined in config
+    standard_path = config.get_path('road_segmentation', 'segmentation_file_path')
+    os.makedirs(os.path.dirname(standard_path), exist_ok=True)
+    
+    # Save to both locations
     with open(output_path, 'w') as f:
         json.dump(results, f, indent=2)
+        
+    with open(standard_path, 'w') as f:
+        json.dump(results, f, indent=2)
 
-    print(f"All segmentations saved to {output_path}")
+    print(f"All segmentations saved to:\n- {output_path}\n- {standard_path}")

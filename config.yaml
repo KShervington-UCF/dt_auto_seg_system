@@ -1,0 +1,62 @@
+# Digital Twin Auto Segmentation System Configuration
+
+# Path configurations
+paths:
+  # Base directories
+  data_dir: "data"
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  output_dir: "data/output"
+
+  # Module-specific input/output paths
+  preprocessing:
+    input_dir: "data/raw"
+    img_input_dir: "data/raw/Camera"
+    output_dir: "data/processed/preprocessing"
+    synced_df_path: "data/processed/preprocessing/synchronized_df.csv"
+    cropped_images_dir: "data/processed/preprocessing/cropped_images"
+
+  geopose:
+    input_dir: "data/processed/preprocessing"
+    output_dir: "data/processed/geopose"
+    geopose_file_path: "data/processed/geopose/geopose_file.json"
+
+  classification:
+    input_dir: "data/processed/preprocessing/cropped_images"
+    output_dir: "data/processed/classification"
+    classification_file_path: "data/processed/classification/image_classifications.json"
+
+  road_segmentation:
+    input_dir: "data/processed/classification"
+    images_dir: "data/raw/Camera"
+    output_dir: "data/processed/road_segmentation"
+    segmentation_file_path: "data/processed/road_segmentation/segmentations.json"
+
+  object_segmentation:
+    input_dir: "data/processed/classification"
+    images_dir: "data/raw/Camera"
+    output_dir: "data/processed/object_segmentation"
+    segmentation_file_path: "data/processed/object_segmentation/segmentation_results.json"
+
+  tdml_integration:
+    input_dirs:
+      geopose: "data/processed/geopose"
+      classification: "data/processed/classification"
+      road_segmentation: "data/processed/road_segmentation"
+      object_segmentation: "data/processed/object_segmentation"
+    output_dir: "data/output"
+    tdml_file_path: "data/output/tdml_output.json"
+
+# Module-specific parameters
+parameters:
+  preprocessing:
+    time_tolerance_ms: 500
+
+  classification:
+    confidence_threshold: 0.5
+
+  road_segmentation:
+    confidence_threshold: 0.7
+
+  object_segmentation:
+    confidence_threshold: 0.5

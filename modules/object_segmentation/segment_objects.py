@@ -9,8 +9,17 @@ from detectron2.data import MetadataCatalog
 import cv2
 import os
 import json
+import sys
+import datetime
 import numpy as np
 from pathlib import Path
+
+# Add the project root to the Python path to import the config utils
+project_root = Path(__file__).resolve().parents[2]
+sys.path.append(str(project_root))
+
+# Import the config utility
+from modules.utils.config_utils import config
 
 
 def setup_detector():
@@ -76,10 +85,9 @@ def visualize_segmentation(image, outputs, metadata):
 
 def segment_objects(visualize=False):
     """Process all images in the input directory and save segmentation results."""
-    # Set up paths
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    input_dir = os.path.join(script_dir, "input", "test_images")
-    output_dir = os.path.join(script_dir, "output")
+    # Set up paths from config
+    input_dir = config.get_path('object_segmentation', 'images_dir')
+    output_dir = config.get_path('object_segmentation', 'output_dir')
     vis_dir = os.path.join(output_dir, "segmented_images")
     
     # Create output directories if they don't exist
@@ -124,12 +132,22 @@ def segment_objects(visualize=False):
             vis_path = os.path.join(vis_dir, f"segmented_{image_file}")
             cv2.imwrite(vis_path, vis_image)
     
-    # Save all results to a JSON file
-    results_path = os.path.join(output_dir, "segmentation_results.json")
+    # Save results to both the timestamp file and standard path
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    results_path = os.path.join(output_dir, f"segmentation_results_{timestamp}.json")
+    
+    # Also save to standard path defined in config
+    standard_path = config.get_path('object_segmentation', 'segmentation_file_path')
+    os.makedirs(os.path.dirname(standard_path), exist_ok=True)
+    
+    # Save to both locations
     with open(results_path, 'w') as f:
         json.dump(all_results, f, indent=2)
+        
+    with open(standard_path, 'w') as f:
+        json.dump(all_results, f, indent=2)
     
-    print(f"Segmentation complete. Results saved to {results_path}")
+    print(f"Segmentation complete. Results saved to:\n- {results_path}\n- {standard_path}")
     return all_results
 
 

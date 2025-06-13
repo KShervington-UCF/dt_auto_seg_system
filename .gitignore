@@ -38,8 +38,9 @@ task-tracking.md
 # Python cache
 __pycache__
 
-# Output files
-**/output/**
+# Input Data
+**/data/raw/**
+**/data/processed/**
 
 # TEMPORARY FILES FOR TESTING
 # Sample raw data
