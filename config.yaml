@@ -47,6 +47,14 @@ paths:
     output_dir: "data/output"
     tdml_file_path: "data/output/tdml_output.json"
 
+  visualization:
+    input_dirs:
+      road_segmentation: "data/processed/road_segmentation"
+      object_segmentation: "data/processed/object_segmentation"
+    output_dir: "data/output/visualizations"
+    road_vis_dir: "data/output/visualizations/road_segmentations"
+    object_vis_dir: "data/output/visualizations/object_segmentations"
+
 # Module-specific parameters
 parameters:
   preprocessing:

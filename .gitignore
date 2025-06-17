@@ -42,6 +42,9 @@ __pycache__
 **/data/raw/**
 **/data/processed/**
 
+# Output images
+**/data/output/visualizations/**
+
 # TEMPORARY FILES FOR TESTING
 # Sample raw data
 **/sample_raw_data/**
