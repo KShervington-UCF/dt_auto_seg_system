@@ -31,6 +31,7 @@ dist-ssr
 env
 sam2-env
 detectron2-env
+obj-comp-env
 
 # Personal task tracking
 task-tracking.md

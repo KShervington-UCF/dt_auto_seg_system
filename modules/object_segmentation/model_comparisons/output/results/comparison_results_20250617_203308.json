@@ -1,0 +1,470 @@
+{
+  "per_image": {
+    "img_1.png": {
+      "detectron2": {
+        "inference_time": 1.0449986457824707,
+        "num_objects_detected": 19,
+        "confidence_scores": [
+          0.9987809062004089, 0.9987244009971619, 0.9984979629516602,
+          0.9977756142616272, 0.9965488314628601, 0.9952665567398071,
+          0.9942373037338257, 0.9853476285934448, 0.9808394908905029,
+          0.9785603880882263, 0.978379487991333, 0.946965754032135,
+          0.9452103972434998, 0.9240719676017761, 0.9115732908248901,
+          0.5969173312187195, 0.5221849083900452, 0.5106911063194275,
+          0.510076642036438
+        ],
+        "avg_confidence": 0.8826657878725153,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_1\\detectron2_img_1.png"
+      },
+      "yolo11n-seg": {
+        "inference_time": 0.3234245777130127,
+        "num_objects_detected": 18,
+        "confidence_scores": [
+          0.9480937123298645, 0.8984977006912231, 0.8891986012458801,
+          0.8766348361968994, 0.8720038533210754, 0.8544774055480957,
+          0.7905290126800537, 0.7359628677368164, 0.6961570978164673,
+          0.680805504322052, 0.5644732117652893, 0.4997284710407257,
+          0.48185455799102783, 0.41183140873908997, 0.40275266766548157,
+          0.4001785218715668, 0.3749646842479706, 0.29402172565460205
+        ],
+        "avg_confidence": 0.6484536578257879,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_1\\yolo11n-seg_img_1.png"
+      },
+      "yolo11s-seg": {
+        "inference_time": 0.34801387786865234,
+        "num_objects_detected": 19,
+        "confidence_scores": [
+          0.9456093311309814, 0.9242108464241028, 0.9114435315132141,
+          0.8966986536979675, 0.8936641216278076, 0.8684752583503723,
+          0.8399093151092529, 0.8048548102378845, 0.7546210885047913,
+          0.7472155690193176, 0.7304570078849792, 0.7256062626838684,
+          0.5432490110397339, 0.5070241093635559, 0.5066633820533752,
+          0.4751845598220825, 0.41141843795776367, 0.3460499346256256,
+          0.3116035759449005
+        ],
+        "avg_confidence": 0.6917873056311357,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_1\\yolo11s-seg_img_1.png"
+      },
+      "yolo11m-seg": {
+        "inference_time": 0.4447450637817383,
+        "num_objects_detected": 19,
+        "confidence_scores": [
+          0.9390625357627869, 0.9174091815948486, 0.9165420532226562,
+          0.9039843678474426, 0.8864468336105347, 0.8861079812049866,
+          0.850138247013092, 0.807142972946167, 0.7729153633117676,
+          0.7638469338417053, 0.7279620170593262, 0.6722177863121033,
+          0.6373031139373779, 0.5763722658157349, 0.5088632106781006,
+          0.3873867690563202, 0.36561858654022217, 0.33648401498794556,
+          0.33478373289108276
+        ],
+        "avg_confidence": 0.6942414719807474,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_1\\yolo11m-seg_img_1.png"
+      },
+      "yolo11l-seg": {
+        "inference_time": 0.5615530014038086,
+        "num_objects_detected": 19,
+        "confidence_scores": [
+          0.9516511559486389, 0.9235873818397522, 0.9171826243400574,
+          0.9137413501739502, 0.9128007888793945, 0.9101672172546387,
+          0.838746964931488, 0.8202581405639648, 0.7674133777618408,
+          0.7644107341766357, 0.760113000869751, 0.7352542281150818,
+          0.6265462040901184, 0.6100955605506897, 0.5926337242126465,
+          0.5810753107070923, 0.4318750202655792, 0.3926263153553009,
+          0.2806244492530823
+        ],
+        "avg_confidence": 0.7226738710152475,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_1\\yolo11l-seg_img_1.png"
+      },
+      "yolo11x-seg": {
+        "inference_time": 0.9167349338531494,
+        "num_objects_detected": 18,
+        "confidence_scores": [
+          0.953975260257721, 0.9275062084197998, 0.9250208735466003,
+          0.9146990180015564, 0.9100407361984253, 0.8906499743461609,
+          0.8444513082504272, 0.8311912417411804, 0.7990909814834595,
+          0.7681725025177002, 0.7135842442512512, 0.6695338487625122,
+          0.6577883958816528, 0.6446554064750671, 0.6373619437217712,
+          0.484721839427948, 0.26318827271461487, 0.2533223628997803
+        ],
+        "avg_confidence": 0.7271641343832016,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_1\\yolo11x-seg_img_1.png"
+      }
+    },
+    "img_2.png": {
+      "detectron2": {
+        "inference_time": 0.48762035369873047,
+        "num_objects_detected": 19,
+        "confidence_scores": [
+          0.9993821382522583, 0.9992372989654541, 0.9984643459320068,
+          0.9979326725006104, 0.996967613697052, 0.9966601133346558,
+          0.9957554340362549, 0.9905543923377991, 0.9861254096031189,
+          0.9758381247520447, 0.9326826930046082, 0.930233359336853,
+          0.9143489003181458, 0.9124078154563904, 0.9042420983314514,
+          0.8079525828361511, 0.6168409585952759, 0.5485082268714905,
+          0.5319004058837891
+        ],
+        "avg_confidence": 0.8966333991602847,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_2\\detectron2_img_2.png"
+      },
+      "yolo11n-seg": {
+        "inference_time": 0.07016634941101074,
+        "num_objects_detected": 19,
+        "confidence_scores": [
+          0.9011672139167786, 0.8919682502746582, 0.8564980030059814,
+          0.8411018252372742, 0.838323712348938, 0.8365784287452698,
+          0.8206768035888672, 0.8197200894355774, 0.7582790851593018,
+          0.6640217900276184, 0.6181926131248474, 0.5042350888252258,
+          0.4941443204879761, 0.45484647154808044, 0.4484602212905884,
+          0.4030000865459442, 0.28259411454200745, 0.27913424372673035,
+          0.271006315946579
+        ],
+        "avg_confidence": 0.630734140935697,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_2\\yolo11n-seg_img_2.png"
+      },
+      "yolo11s-seg": {
+        "inference_time": 0.06928539276123047,
+        "num_objects_detected": 19,
+        "confidence_scores": [
+          0.9315892457962036, 0.8836483359336853, 0.8769820928573608,
+          0.8723008632659912, 0.8644899725914001, 0.8624358177185059,
+          0.8581621646881104, 0.8509398698806763, 0.7584567666053772,
+          0.7030501961708069, 0.6793837547302246, 0.5673673748970032,
+          0.5296280980110168, 0.5171610713005066, 0.46431124210357666,
+          0.4334464967250824, 0.4186953008174896, 0.3705945611000061,
+          0.30553582310676575
+        ],
+        "avg_confidence": 0.6709567920157784,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_2\\yolo11s-seg_img_2.png"
+      },
+      "yolo11m-seg": {
+        "inference_time": 0.08670711517333984,
+        "num_objects_detected": 19,
+        "confidence_scores": [
+          0.9117380380630493, 0.9106870293617249, 0.8981500864028931,
+          0.8914828300476074, 0.8872498273849487, 0.8723894357681274,
+          0.8676844835281372, 0.8035892844200134, 0.7957515716552734,
+          0.7602673768997192, 0.6555606722831726, 0.6185318231582642,
+          0.5929370522499084, 0.5850629210472107, 0.562070369720459,
+          0.4119841158390045, 0.3326655626296997, 0.2944833040237427,
+          0.2707708477973938
+        ],
+        "avg_confidence": 0.6801608753831763,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_2\\yolo11m-seg_img_2.png"
+      },
+      "yolo11l-seg": {
+        "inference_time": 0.08879733085632324,
+        "num_objects_detected": 21,
+        "confidence_scores": [
+          0.914736270904541, 0.9016730785369873, 0.899934709072113,
+          0.8983205556869507, 0.897087812423706, 0.8921844363212585,
+          0.8889102935791016, 0.842642605304718, 0.8299058079719543,
+          0.7998992800712585, 0.5996763110160828, 0.5979639887809753,
+          0.5845667123794556, 0.5241339802742004, 0.49657970666885376,
+          0.4963296353816986, 0.478746622800827, 0.38263583183288574,
+          0.34676527976989746, 0.3376113176345825, 0.28561627864837646
+        ],
+        "avg_confidence": 0.6617105007171631,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_2\\yolo11l-seg_img_2.png"
+      },
+      "yolo11x-seg": {
+        "inference_time": 0.09097480773925781,
+        "num_objects_detected": 20,
+        "confidence_scores": [
+          0.9092328548431396, 0.9089807868003845, 0.9008937478065491,
+          0.8967990279197693, 0.8938244581222534, 0.8908158540725708,
+          0.8785971999168396, 0.8479357361793518, 0.799531877040863,
+          0.7708753943443298, 0.5980350971221924, 0.5918646454811096,
+          0.5803956985473633, 0.43979787826538086, 0.4003504514694214,
+          0.37934988737106323, 0.3277762830257416, 0.2948385775089264,
+          0.28442689776420593, 0.25026482343673706
+        ],
+        "avg_confidence": 0.6422293588519097,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_2\\yolo11x-seg_img_2.png"
+      }
+    },
+    "img_3.jpg": {
+      "detectron2": {
+        "inference_time": 0.4040191173553467,
+        "num_objects_detected": 22,
+        "confidence_scores": [
+          0.9987138509750366, 0.9929741621017456, 0.9884607791900635,
+          0.9718459844589233, 0.9684338569641113, 0.9631009101867676,
+          0.9577499628067017, 0.9533078670501709, 0.9475224018096924,
+          0.9287225008010864, 0.9255315661430359, 0.9113461971282959,
+          0.8917333483695984, 0.8654385209083557, 0.7612584233283997,
+          0.7553439736366272, 0.6943240761756897, 0.672329843044281,
+          0.6257933378219604, 0.6205759048461914, 0.5883918404579163,
+          0.523638904094696
+        ],
+        "avg_confidence": 0.841206282377243,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_3\\detectron2_img_3.jpg"
+      },
+      "yolo11n-seg": {
+        "inference_time": 0.10403180122375488,
+        "num_objects_detected": 20,
+        "confidence_scores": [
+          0.8502792716026306, 0.8056814670562744, 0.7254247069358826,
+          0.7130155563354492, 0.7000113725662231, 0.6445415616035461,
+          0.6227035522460938, 0.5978800654411316, 0.5334320664405823,
+          0.48230138421058655, 0.45378467440605164, 0.4336321949958801,
+          0.4176560342311859, 0.3756081461906433, 0.3741627633571625,
+          0.29154470562934875, 0.2865859270095825, 0.27744296193122864,
+          0.2577283978462219, 0.2514396011829376
+        ],
+        "avg_confidence": 0.5047428205609321,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_3\\yolo11n-seg_img_3.jpg"
+      },
+      "yolo11s-seg": {
+        "inference_time": 0.0936436653137207,
+        "num_objects_detected": 17,
+        "confidence_scores": [
+          0.8797624707221985, 0.8641033172607422, 0.8261660933494568,
+          0.8104870915412903, 0.8025426864624023, 0.796745777130127,
+          0.7072126269340515, 0.6816267967224121, 0.6143125295639038,
+          0.5930291414260864, 0.5342354774475098, 0.45994168519973755,
+          0.44559383392333984, 0.39454078674316406, 0.3294334411621094,
+          0.2783573567867279, 0.2670668065547943
+        ],
+        "avg_confidence": 0.6050092893488267,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_3\\yolo11s-seg_img_3.jpg"
+      },
+      "yolo11m-seg": {
+        "inference_time": 0.07828235626220703,
+        "num_objects_detected": 18,
+        "confidence_scores": [
+          0.8900229930877686, 0.8407506346702576, 0.829319953918457,
+          0.7993999123573303, 0.7883434295654297, 0.7713022828102112,
+          0.7703191637992859, 0.7369109988212585, 0.6913852095603943,
+          0.6799513697624207, 0.6124762892723083, 0.607412576675415,
+          0.5713948011398315, 0.4283125698566437, 0.38509052991867065,
+          0.3379056453704834, 0.33050718903541565, 0.323085755109787
+        ],
+        "avg_confidence": 0.6329939613739649,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_3\\yolo11m-seg_img_3.jpg"
+      },
+      "yolo11l-seg": {
+        "inference_time": 0.05910897254943848,
+        "num_objects_detected": 18,
+        "confidence_scores": [
+          0.888954758644104, 0.8636624217033386, 0.8519231081008911,
+          0.8478773236274719, 0.7825665473937988, 0.7487988471984863,
+          0.7261425852775574, 0.7144191265106201, 0.68327397108078,
+          0.6658032536506653, 0.562021791934967, 0.5607681274414062,
+          0.5455150604248047, 0.5362557768821716, 0.40746232867240906,
+          0.3680739998817444, 0.3136112689971924, 0.2922300398349762
+        ],
+        "avg_confidence": 0.631075574292077,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_3\\yolo11l-seg_img_3.jpg"
+      },
+      "yolo11x-seg": {
+        "inference_time": 0.12953782081604004,
+        "num_objects_detected": 19,
+        "confidence_scores": [
+          0.8917918801307678, 0.8737155199050903, 0.8696306943893433,
+          0.8519178032875061, 0.8503000736236572, 0.8368865847587585,
+          0.7878693342208862, 0.7529997229576111, 0.7423881888389587,
+          0.6315792202949524, 0.620631754398346, 0.5741719007492065,
+          0.5536134839057922, 0.4157714545726776, 0.38710686564445496,
+          0.3771866261959076, 0.3206351399421692, 0.27732884883880615,
+          0.2526054382324219
+        ],
+        "avg_confidence": 0.6246384492045954,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_3\\yolo11x-seg_img_3.jpg"
+      }
+    },
+    "img_4.jpg": {
+      "detectron2": {
+        "inference_time": 0.34723711013793945,
+        "num_objects_detected": 13,
+        "confidence_scores": [
+          0.9994727969169617, 0.9957186579704285, 0.9916180968284607,
+          0.9912221431732178, 0.9869686961174011, 0.9802049994468689,
+          0.9019263982772827, 0.854336678981781, 0.8016374111175537,
+          0.7682133913040161, 0.7506036162376404, 0.5488731861114502,
+          0.5221834182739258
+        ],
+        "avg_confidence": 0.8533061146736145,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_4\\detectron2_img_4.jpg"
+      },
+      "yolo11n-seg": {
+        "inference_time": 0.09939122200012207,
+        "num_objects_detected": 8,
+        "confidence_scores": [
+          0.7530257701873779, 0.7305538058280945, 0.7080743908882141,
+          0.6958741545677185, 0.6421172022819519, 0.6117652058601379,
+          0.33684322237968445, 0.2778722047805786
+        ],
+        "avg_confidence": 0.5945157445967197,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_4\\yolo11n-seg_img_4.jpg"
+      },
+      "yolo11s-seg": {
+        "inference_time": 0.10039329528808594,
+        "num_objects_detected": 10,
+        "confidence_scores": [
+          0.8759945631027222, 0.7692736387252808, 0.7368541359901428,
+          0.705756664276123, 0.6602001786231995, 0.5835079550743103,
+          0.49702247977256775, 0.4121495187282562, 0.3369878828525543,
+          0.28295329213142395
+        ],
+        "avg_confidence": 0.5860700309276581,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_4\\yolo11s-seg_img_4.jpg"
+      },
+      "yolo11m-seg": {
+        "inference_time": 0.09289956092834473,
+        "num_objects_detected": 12,
+        "confidence_scores": [
+          0.8715173602104187, 0.7967514991760254, 0.7686205506324768,
+          0.7635414004325867, 0.7217378616333008, 0.6688758134841919,
+          0.4598233997821808, 0.35247358679771423, 0.3492079973220825,
+          0.2675696313381195, 0.2660720646381378, 0.26143863797187805
+        ],
+        "avg_confidence": 0.5456358169515928,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_4\\yolo11m-seg_img_4.jpg"
+      },
+      "yolo11l-seg": {
+        "inference_time": 0.06471776962280273,
+        "num_objects_detected": 14,
+        "confidence_scores": [
+          0.8827800154685974, 0.8005574345588684, 0.7880100607872009,
+          0.6591731905937195, 0.6133342385292053, 0.5530233979225159,
+          0.550347089767456, 0.4595594108104706, 0.38495907187461853,
+          0.3729484975337982, 0.35683175921440125, 0.35625001788139343,
+          0.3031192421913147, 0.26162198185920715
+        ],
+        "avg_confidence": 0.5244653863566262,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_4\\yolo11l-seg_img_4.jpg"
+      },
+      "yolo11x-seg": {
+        "inference_time": 0.12026762962341309,
+        "num_objects_detected": 12,
+        "confidence_scores": [
+          0.9165768027305603, 0.8035618662834167, 0.7852744460105896,
+          0.7432011365890503, 0.6985929608345032, 0.6753442883491516,
+          0.5458479523658752, 0.5123709440231323, 0.36175066232681274,
+          0.35757651925086975, 0.262328565120697, 0.26213666796684265
+        ],
+        "avg_confidence": 0.5770469009876251,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_4\\yolo11x-seg_img_4.jpg"
+      }
+    },
+    "img_5.jpg": {
+      "detectron2": {
+        "inference_time": 0.29728269577026367,
+        "num_objects_detected": 12,
+        "confidence_scores": [
+          0.998927652835846, 0.998356282711029, 0.9924193024635315,
+          0.9791619777679443, 0.9733272194862366, 0.9727097749710083,
+          0.941734254360199, 0.9364948868751526, 0.8649365901947021,
+          0.7613481283187866, 0.7435851693153381, 0.6197865605354309
+        ],
+        "avg_confidence": 0.8985656499862671,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_5\\detectron2_img_5.jpg"
+      },
+      "yolo11n-seg": {
+        "inference_time": 0.10149025917053223,
+        "num_objects_detected": 8,
+        "confidence_scores": [
+          0.8354705572128296, 0.7722427845001221, 0.6804161071777344,
+          0.6444959044456482, 0.6012502312660217, 0.573347270488739,
+          0.46185389161109924, 0.3157021999359131
+        ],
+        "avg_confidence": 0.6105973683297634,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_5\\yolo11n-seg_img_5.jpg"
+      },
+      "yolo11s-seg": {
+        "inference_time": 0.09012842178344727,
+        "num_objects_detected": 11,
+        "confidence_scores": [
+          0.8757897615432739, 0.7629802227020264, 0.6858876943588257,
+          0.6120212078094482, 0.6013581156730652, 0.5995355248451233,
+          0.5413264632225037, 0.4617038071155548, 0.41366612911224365,
+          0.37853702902793884, 0.3061772584915161
+        ],
+        "avg_confidence": 0.5671802921728655,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_5\\yolo11s-seg_img_5.jpg"
+      },
+      "yolo11m-seg": {
+        "inference_time": 0.09088373184204102,
+        "num_objects_detected": 10,
+        "confidence_scores": [
+          0.8799708485603333, 0.7951198220252991, 0.7565715312957764,
+          0.7309496402740479, 0.706401526927948, 0.6510146856307983,
+          0.6404452323913574, 0.5496689677238464, 0.47956934571266174,
+          0.3987673819065094
+        ],
+        "avg_confidence": 0.6588478982448578,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_5\\yolo11m-seg_img_5.jpg"
+      },
+      "yolo11l-seg": {
+        "inference_time": 0.060643672943115234,
+        "num_objects_detected": 13,
+        "confidence_scores": [
+          0.8879034519195557, 0.7848803997039795, 0.766395092010498,
+          0.7302291989326477, 0.7007274627685547, 0.6977004408836365,
+          0.6621326208114624, 0.6442556977272034, 0.4908050298690796,
+          0.47998568415641785, 0.4154784381389618, 0.28351718187332153,
+          0.2612653970718384
+        ],
+        "avg_confidence": 0.6004058535282428,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_5\\yolo11l-seg_img_5.jpg"
+      },
+      "yolo11x-seg": {
+        "inference_time": 0.12663888931274414,
+        "num_objects_detected": 14,
+        "confidence_scores": [
+          0.8952564001083374, 0.8158366084098816, 0.7935180068016052,
+          0.7646154165267944, 0.7570195198059082, 0.737718403339386,
+          0.7297056913375854, 0.7169458866119385, 0.581741213798523,
+          0.5677133798599243, 0.5574642419815063, 0.5497943162918091,
+          0.4566851854324341, 0.3033755421638489
+        ],
+        "avg_confidence": 0.6590992723192487,
+        "visualization_path": "D:\\Projects\\dt_auto_seg_system\\modules\\object_segmentation\\model_comparisons\\output\\visualizations\\img_5\\yolo11x-seg_img_5.jpg"
+      }
+    }
+  },
+  "summary": {
+    "detectron2": {
+      "avg_inference_time": 0.5162315845489502,
+      "avg_objects_per_image": 17.0,
+      "avg_confidence": 0.8728116477237028,
+      "total_objects_detected": 85,
+      "processed_images": 5
+    },
+    "yolo11n-seg": {
+      "avg_inference_time": 0.13970084190368653,
+      "avg_objects_per_image": 14.6,
+      "avg_confidence": 0.5944092579900402,
+      "total_objects_detected": 73,
+      "processed_images": 5
+    },
+    "yolo11s-seg": {
+      "avg_inference_time": 0.14029293060302733,
+      "avg_objects_per_image": 15.2,
+      "avg_confidence": 0.6352234118078884,
+      "total_objects_detected": 76,
+      "processed_images": 5
+    },
+    "yolo11m-seg": {
+      "avg_inference_time": 0.15870356559753418,
+      "avg_objects_per_image": 15.6,
+      "avg_confidence": 0.6492774960322257,
+      "total_objects_detected": 78,
+      "processed_images": 5
+    },
+    "yolo11l-seg": {
+      "avg_inference_time": 0.16696414947509766,
+      "avg_objects_per_image": 17.0,
+      "avg_confidence": 0.6368691283113816,
+      "total_objects_detected": 85,
+      "processed_images": 5
+    },
+    "yolo11x-seg": {
+      "avg_inference_time": 0.2768308162689209,
+      "avg_objects_per_image": 16.6,
+      "avg_confidence": 0.6500436717487243,
+      "total_objects_detected": 83,
+      "processed_images": 5
+    }
+  }
+}
