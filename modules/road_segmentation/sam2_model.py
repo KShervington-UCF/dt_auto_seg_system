@@ -2,10 +2,16 @@ import torch
 from sam2.sam2_image_predictor import SAM2ImagePredictor
 from PIL import Image
 import numpy as np
+import os
+from pathlib import Path
 
 class SAM2Model:
     def __init__(self):
         self.model = self.load_model()
+
+        # Add to SAM2Model.__init__
+        self.device = torch.device("cuda") if torch.cuda.is_available() else Exception("No GPU available")
+        print(f"Using device: {self.device}")
        
     def load_model(self, model_name='facebook/sam2-hiera-large'):
         try:
@@ -23,23 +29,53 @@ class SAM2Model:
 
             self.model.set_image(image)
 
-            with torch.inference_mode(), torch.autocast("cuda", dtype=torch.bfloat16):
-                # Generate single prediction based on image
-                masks, scores, logits = self.model.predict(point_coords=input_points, point_labels=input_labels, multimask_output=True)
+            # First generate multiple masks
+            with torch.inference_mode():
+                if torch.cuda.is_available():
+                    with torch.autocast("cuda", dtype=torch.bfloat16):
+                        masks, scores, logits = self.model.predict(
+                            point_coords=input_points, 
+                            point_labels=input_labels, 
+                            multimask_output=True
+                        )
+                else:
+                    masks, scores, logits = self.model.predict(
+                        point_coords=input_points, 
+                        point_labels=input_labels, 
+                        multimask_output=True
+                    )
 
-                sorted_ind = np.argsort(scores)[::-1]
-                masks = masks[sorted_ind]
-                scores = scores[sorted_ind]
-                logits = logits[sorted_ind]
+            # Sort masks by score
+            sorted_ind = np.argsort(scores)[::-1]
+            masks = masks[sorted_ind]
+            scores = scores[sorted_ind]
+            logits = logits[sorted_ind]
 
-                # Get the model's best mask
-                mask_input = logits[np.argmax(scores), :, :]
+            # Select highest scoring mask's logits
+            best_mask_logits = logits[0, :, :]  # Take the highest scoring mask directly
 
-                masks, scores, _ = self.model.predict(point_coords=input_points, point_labels=input_labels, mask_input=mask_input[None, :, :], multimask_output=False)
+            # Second prediction with the best mask input
+            with torch.inference_mode():
+                if torch.cuda.is_available():
+                    with torch.autocast("cuda", dtype=torch.bfloat16):
+                        masks, scores, _ = self.model.predict(
+                            point_coords=input_points, 
+                            point_labels=input_labels, 
+                            mask_input=best_mask_logits[None, :, :], 
+                            multimask_output=False
+                        )
+                else:
+                    masks, scores, _ = self.model.predict(
+                        point_coords=input_points, 
+                        point_labels=input_labels, 
+                        mask_input=best_mask_logits[None, :, :], 
+                        multimask_output=False
+                    )
 
-                sorted_ind = np.argsort(scores)[::-1]
-                masks = masks[sorted_ind]
-                scores = scores[sorted_ind]
+            # Sort final masks
+            sorted_ind = np.argsort(scores)[::-1]
+            masks = masks[sorted_ind]
+            scores = scores[sorted_ind]
 
             return masks[0], scores[0]
         except Exception as e:

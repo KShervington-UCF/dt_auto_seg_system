@@ -39,6 +39,12 @@ def convert_mask_to_polygon(binary_mask):
 
     return polygons[0]
 
+def calculate_input_points_hardcode(image):
+    # Use the same points that worked well in Colab
+    road_point_x, road_point_y = 540, 200  # Positive point (road)
+    negative_point_x, negative_point_y = 540, 900  # Negative point (non-road)
+    return [[road_point_x, road_point_y], [negative_point_x, negative_point_y]]
+
 def calculate_input_points(image):
     """
     Calculate the road point in the image.
@@ -63,7 +69,8 @@ def calculate_input_points(image):
     negative_point_x = center_x
     negative_point_y = center_y - vertical_offset
 
-    return [[road_point_x, road_point_y], [negative_point_x, negative_point_y]]
+    # Points given in reverse order to resolve some issues with SAM2
+    return [[negative_point_x, negative_point_y], [road_point_x, road_point_y]]
 
 def process_images(classifications_file, masking_model):
     """

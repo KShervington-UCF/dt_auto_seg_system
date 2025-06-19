@@ -41,13 +41,17 @@ def overlay_segmentation(image, segmentation_poly, color='red', alpha=0.5,
         else:
             raise FileNotFoundError(f"Image file not found: {image}")
     
+    # Get image dimensions for coordinate flipping
+    img_height = image.shape[0]
+    img_width = image.shape[1]
+    
     # Create figure and axis
     fig, ax = plt.subplots(figsize=figsize, dpi=dpi)
     
     # Display the image
     ax.imshow(image)
     
-    # Convert polygon to format needed by matplotlib
+    # Convert polygon to format needed by matplotlib and flip coordinates
     if isinstance(segmentation_poly, list) and len(segmentation_poly) > 0:
         # Create polygon patches
         patches = []
@@ -56,10 +60,22 @@ def overlay_segmentation(image, segmentation_poly, color='red', alpha=0.5,
         if isinstance(segmentation_poly[0], list) and isinstance(segmentation_poly[0][0], (list, tuple)):
             # Multiple polygons
             for poly in segmentation_poly:
-                patches.append(Polygon(poly, True))
+                # Flip polygon coordinates
+                flipped_poly = []
+                for point in poly:
+                    flipped_x = img_width - point[0]
+                    flipped_y = img_height - point[1]
+                    flipped_poly.append([flipped_x, flipped_y])
+                patches.append(Polygon(flipped_poly, True))
         else:
-            # Single polygon
-            patches.append(Polygon(segmentation_poly, True))
+            # Single polygon - flip the coordinates
+            flipped_poly = []
+            for point in segmentation_poly:
+                if isinstance(point, (list, tuple)) and len(point) >= 2:
+                    flipped_x = img_width - point[0]
+                    flipped_y = img_height - point[1]
+                    flipped_poly.append([flipped_x, flipped_y])
+            patches.append(Polygon(flipped_poly, True))
             
         p = PatchCollection(patches, alpha=alpha, color=color, linewidth=0)
         ax.add_collection(p)
@@ -171,6 +187,10 @@ def overlay_multiple_segmentations(image, segmentation_polys_dict, alpha=0.5,
         else:
             raise FileNotFoundError(f"Image file not found: {image}")
     
+    # Get image dimensions for coordinate flipping
+    img_height = image.shape[0]
+    img_width = image.shape[1]
+    
     # Create figure and axis
     fig, ax = plt.subplots(figsize=figsize, dpi=dpi)
     
@@ -194,6 +214,32 @@ def overlay_multiple_segmentations(image, segmentation_polys_dict, alpha=0.5,
             import numpy as np
             np_poly = np.array(poly)
             
+            # Helper function to flip a set of coordinates
+            def flip_coordinates(coords):
+                flipped_coords = []
+                
+                # Handle different coordinate formats
+                if len(coords) == 0:
+                    return np.array(flipped_coords)
+                    
+                # Check if we have a flat list of coordinates [x1, y1, x2, y2, ...]
+                if isinstance(coords, (list, np.ndarray)) and isinstance(coords[0], (int, float, np.integer, np.floating)):
+                    # It's a flat list, process pairs
+                    for i in range(0, len(coords), 2):
+                        if i + 1 < len(coords):  # Make sure we have both x and y
+                            flipped_x = img_width - coords[i]
+                            flipped_y = img_height - coords[i + 1]
+                            flipped_coords.append([flipped_x, flipped_y])
+                    return np.array(flipped_coords)
+                
+                # Handle list of coordinate pairs [[x1,y1], [x2,y2], ...]
+                for i in range(len(coords)):
+                    if isinstance(coords[i], (list, tuple, np.ndarray)) and len(coords[i]) >= 2:
+                        flipped_x = img_width - coords[i][0]
+                        flipped_y = img_height - coords[i][1]
+                        flipped_coords.append([flipped_x, flipped_y])
+                return np.array(flipped_coords)
+            
             # Check polygon format
             if len(np_poly.shape) == 1 and isinstance(poly[0], (int, float)):
                 # We have a flat list of numbers - convert to pairs
@@ -202,16 +248,22 @@ def overlay_multiple_segmentations(image, segmentation_polys_dict, alpha=0.5,
                     continue
                 # Reshape into pairs
                 np_poly = np.array([(poly[i], poly[i+1]) for i in range(0, len(poly), 2)])
+                # Flip coordinates
+                np_poly = flip_coordinates(np_poly)
                 patches.append(Polygon(np_poly))
                 
             elif len(np_poly.shape) == 2 and np_poly.shape[1] == 2:
                 # Correct format: array of [x,y] points for a single polygon
+                # Flip coordinates
+                np_poly = flip_coordinates(np_poly)
                 patches.append(Polygon(np_poly))
                 
             elif len(np_poly.shape) == 3 and np_poly.shape[2] == 2:
                 # Multiple polygons, each a list of [x,y] points
                 for p in np_poly:
-                    patches.append(Polygon(p))
+                    # Flip coordinates
+                    p_flipped = flip_coordinates(p)
+                    patches.append(Polygon(p_flipped))
                     
             elif isinstance(poly[0], list):
                 # Might be a list of polygons
@@ -221,11 +273,14 @@ def overlay_multiple_segmentations(image, segmentation_polys_dict, alpha=0.5,
                         p_array = np.array(p)
                         if len(p_array.shape) == 2 and p_array.shape[1] == 2:
                             # Valid polygon points
-                            patches.append(Polygon(p_array))
+                            p_flipped = flip_coordinates(p_array)
+                            patches.append(Polygon(p_flipped))
                         elif len(p_array.shape) == 1 and len(p) % 2 == 0:
                             # Flat list of coordinates - reshape into pairs
                             p_array = np.array([(p[i], p[i+1]) for i in range(0, len(p), 2)])
-                            patches.append(Polygon(p_array))
+                            # Flip coordinates
+                            p_flipped = flip_coordinates(p_array)
+                            patches.append(Polygon(p_flipped))
             else:
                 print(f"Warning: Unrecognized polygon format for {seg_type} - skipping")
                 continue
